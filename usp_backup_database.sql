@@ -1,7 +1,7 @@
 CREATE OR ALTER PROCEDURE usp_backup_database @dbname NVARCHAR(80)
 AS
     DECLARE @backupfile NVARCHAR(200)
-    SET @backupfile = @dbname+'/'+@dbname+N'_'+FORMAT(GETDATE(), 'yyyyMMdd')+N'.bak'
+    SET @backupfile = @dbname+'\'+@dbname+N'_'+FORMAT(GETDATE(), 'yyyyMMdd')+N'.bak'
     -- Full Backup
     IF NOT EXISTS
     (SELECT * FROM msdb.dbo.backupmediafamily WHERE physical_device_name LIKE '%'+@backupfile)
